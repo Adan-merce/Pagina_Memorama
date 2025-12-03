@@ -82,6 +82,9 @@
         #inicio-container {
             display: block; /* Asegura que el contenedor de inicio se muestre */
         }
+        #botonReiniciar {
+            display: none; /* Initially hide the restart button */
+        }
     </style>
 </head>
 <body>
@@ -152,6 +155,7 @@
                 tablero.appendChild(elementoCarta);
             });
             cartasEncontradas = 0;
+            botonReiniciar.style.display = 'none'; // Ensure it's hidden at the start of a new game
         }
 
         function voltearCarta() {
@@ -184,7 +188,7 @@
                 }, 1000);
 
                 if (cartasEncontradas === cartas.length) {
-                    // Todos los pares encontrados
+                    botonReiniciar.style.display = 'inline-block'; // Show the restart button
                 }
 
             } else {
@@ -204,10 +208,12 @@
             cartasVolteadas = [];
             bloqueoTablero = false;
             cartasEncontradas = 0;
+            botonReiniciar.style.display = 'none'; // Hide the restart button when resetting
         }
 
         // Oculta el tablero al inicio
         tableroContainer.style.display = 'none';
+        botonReiniciar.style.display = 'none';
 
         botonIniciar.addEventListener('click', function() {
             inicioContainer.style.display = 'none';
@@ -218,6 +224,7 @@
         botonReiniciar.addEventListener('click', function() {
             crearTablero();
             tableroContainer.style.display = 'grid';
+            botonReiniciar.style.display = 'none'; // Hide the restart button after clicking it
         });
 
         botonSalir.addEventListener('click', function() {
